@@ -14,31 +14,13 @@ public:
         if(!l2)
             return l1;
         
-        ListNode* d;
         if(l1->val < l2->val){
-            d = l1;
-            l1 = l1->next;
+            l1->next = mergeTwoLists(l1->next, l2);
+            return l1;
         }
         else{
-            d = l2;
-            l2 = l2->next;
+            l2->next = mergeTwoLists(l1, l2->next);
+            return l2;
         }
-        ListNode* re = d;
-        while(l1 && l2){
-            if(l1->val < l2->val){
-                d->next = l1;
-                l1 = l1->next;
-            }
-            else{
-                d->next = l2;
-                l2 = l2->next;
-            }
-            d = d->next;
-        }
-        if(l1)
-            d->next = l1;
-        else
-            d->next = l2;
-        return re;
     }
 };
