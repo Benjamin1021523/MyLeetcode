@@ -1,20 +1,18 @@
-//這方法只能對付two sum，three之後就不適合了
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        vector<int> out;
-        for(int i = 0;i < nums.size() - 1;++i){
-            target -= nums[i];
-            //我覺得這樣比較快
-            for(int j = i + 1;j < nums.size();++j){
-                if(nums[j] == target){
-                    out.push_back(i);
-                    out.push_back(j);
-                    return out;
-                    break;
-                }
+        map<int, int> m;
+        for(int i = 0;i < nums.size();++i){
+            if(m[nums[i]] && nums[i] * 2 == target){
+                //由同個數字組成的情況
+                return {m[nums[i]] - 1, i};
             }
-            target += nums[i];
+            m[nums[i]] = i+1;
         }
+        for(auto& i:m){
+            if(i.second && m[target - i.first])//有n就找找target-n
+                return {i.second - 1, m[target - i.first] - 1};
+        }
+        return {};//並不會用到
     }
 };
