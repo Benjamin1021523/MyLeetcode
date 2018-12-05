@@ -16,3 +16,9 @@ class Solution:
             #if target - i in dict and i != target - i:
             if target - i in dict:
                 return [dict[i], dict[target - i]]
+        '''
+        #結構簡單，無額外空間，但效率極差
+        for i in range(len(nums)-1, -1, -1):
+            if target - nums[i] in nums and nums.index(target - nums[i]) != i:
+                return [nums.index(target - nums[i]), i]
+        '''

@@ -8,38 +8,32 @@
  */
 class Solution {
 public:
-    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        ListNode* ans = new ListNode(0);
-        int carry = 0;
-        ListNode* nod = ans;
-
-        while(l1 || l2){
-            //ListNode* a = new ListNode(0);
-            //nod->next = a;
-            //這樣寫會雙重釋放記憶體，必須讓宣告的變數只給自己用
-            if(!l1){
-                nod->next = new ListNode((l2->val + carry) % 10);
-                carry = (l2->val + carry) / 10;
-                l2 = l2->next;
-                nod = nod->next;
-            }
-            else if(!l2){
-                nod->next = new ListNode((l1->val + carry) % 10);
-                carry = (l1->val + carry) / 10;
-                l1 = l1->next;
-                nod = nod->next;
-            }
-            else{
-                nod->next = new ListNode((l1->val + l2->val + carry) % 10);
-                carry = (l1->val + l2->val + carry) / 10;
-                l1 = l1->next;
-                l2 = l2->next;
-                nod = nod->next;
-            }
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2, bool carry = false) {
+        //改用遞迴
+        if(!l1 && !l2){
+            if(carry)
+                return new ListNode(1);
+            return NULL;
         }
-        if(carry){
-            nod->next = new ListNode(carry);
+        if(!l2){
+            swap(l1, l2);
         }
-        return ans->next;
+        if(!l1){
+            l2->val += carry;
+            carry = l2->val > 9;
+            if(carry){
+                l2->val -= 10;
+                l2->next = addTwoNumbers(l1, l2->next, carry);
+            }
+            return l2;
+        }
+        else{
+            l2->val += l1->val + carry;
+            carry = l2->val > 9;
+            if(carry)
+                l2->val -= 10;
+            l2->next = addTwoNumbers(l1->next, l2->next, carry);
+            return l2;
+        }
     }
 };
