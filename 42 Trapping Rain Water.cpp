@@ -1,32 +1,20 @@
-//407 Trapping Rain Water II的原型
+//第一次從左到右，在不會從左漏掉的前提下盡量填滿
+//第二次從右到左，直到最高的之前，把右邊漏掉的扣掉
 class Solution {
 public:
     int trap(vector<int>& height) {
         if(height.size() < 3)
             return 0;
-        int ceiling = height[0];
-        for(auto& i:height)
-            ceiling = max(ceiling, i);
-        vector<int> water(height.size(), ceiling);
-        water[0] = height[0];
-        water[water.size()-1] = height[height.size()-1];
-        int cnt, temp;
-        do{
-            cnt = 0;
-            for(int i = 1, j = water.size()-2;i <= j;++i,--j){
-                if(water[i] != (temp = max(height[i], min(water[i-1], water[i+1])))){
-                    water[i] = temp;
-                    ++cnt;
-                }
-                if(water[j] != (temp = max(height[j], min(water[j-1], water[j+1])))){
-                    water[j] = temp;
-                    ++cnt;
-                }
-            }
-        }while(cnt);
-        int re = 0;
-        for(int i = 0;i < water.size()-1;++i)
-            re += water[i] - height[i];
+        int lM = height[0], re = 0;
+        for(int i = 1;i < height.size();++i){
+            lM = max(lM, height[i]);
+            re += lM - height[i];
+        }
+        int rM = height[height.size()-1];
+        for(int i = height.size()-1;height[i] != lM;--i){
+            rM = max(rM, height[i]);
+            re -= lM - rM;
+        }
         return re;
     }
 };
