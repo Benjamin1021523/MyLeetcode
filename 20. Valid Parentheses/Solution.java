@@ -16,22 +16,31 @@ class Solution {
                 case ')':
                     if (cStack.isEmpty()) {
                         ans = false;
-                    } else if (!cStack.pop().equals('(')) {
-                        ans = false;
+                    } else {
+                        Character top = cStack.pop();
+                        if (!top.equals('(')) {
+                            ans = false;
+                        }
                     }
                     break;
                 case ']':
                     if (cStack.isEmpty()) {
                         ans = false;
-                    } else if (!cStack.pop().equals('[')) {
-                        ans = false;
+                    } else {
+                        Character top = cStack.pop();
+                        if (!top.equals('[')) {
+                            ans = false;
+                        }
                     }
                     break;
                 case '}':
                     if (cStack.isEmpty()) {
                         ans = false;
-                    } else if (!cStack.pop().equals('{')) {
-                        ans = false;
+                    } else {
+                        Character top = cStack.pop();
+                        if (!top.equals('{')) {
+                            ans = false;
+                        }
                     }
                     break;
                 default:
