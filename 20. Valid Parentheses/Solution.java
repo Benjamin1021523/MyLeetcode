@@ -14,39 +14,32 @@ class Solution {
                     cStack.add(c);
                     break;
                 case ')':
-                    if (cStack.isEmpty()) {
-                        ans = false;
-                    } else {
-                        Character top = cStack.pop();
-                        if (!top.equals('(')) {
-                            ans = false;
-                        }
-                    }
-                    break;
                 case ']':
-                    if (cStack.isEmpty()) {
-                        ans = false;
-                    } else {
-                        Character top = cStack.pop();
-                        if (!top.equals('[')) {
-                            ans = false;
-                        }
-                    }
-                    break;
                 case '}':
-                    if (cStack.isEmpty()) {
-                        ans = false;
-                    } else {
-                        Character top = cStack.pop();
-                        if (!top.equals('{')) {
-                            ans = false;
-                        }
-                    }
+                    ans &= checkClosingBracket(cStack, c);
                     break;
                 default:
                     break;
             }
         }
         return ans && cStack.isEmpty();
+    }
+
+    private static final Map<Character, Character> map = new HashMap<>() {{
+        put('(', ')');
+        put('[', ']');
+        put('{', '}');
+    }};
+
+    private boolean checkClosingBracket(Stack<Character> cStack, char right) {
+        if (cStack.isEmpty()) {
+            return false;
+        } else {
+            Character top = cStack.pop();
+            if (!map.get(top).equals(right)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
