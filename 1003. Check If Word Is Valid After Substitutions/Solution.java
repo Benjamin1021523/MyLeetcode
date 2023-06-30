@@ -1,27 +1,29 @@
 class Solution {
     public boolean isValid(String s) {
-        Stack<Character> stack = new Stack<>();
+        List<Integer> list = new ArrayList<>();
 
         boolean ans = true;
         for (char c : s.toCharArray()) {
             if (!ans) break;
             switch (c) {
                 case 'a':
-                    stack.add(c);
+                    list.add(1);
                     break;
                 case 'b':
-                    if (stack.isEmpty()) {
+                    if (list.isEmpty()) {
                         ans = false;
-                    } else if (stack.pop().equals('a')) {
-                        stack.add(c);
+                    } else if (list.get(list.size() - 1) == 1) {
+                        list.set(list.size() - 1, 2);
                     } else {
                         ans = false;
                     }
                     break;
                 case 'c':
-                    if (stack.isEmpty()) {
+                    if (list.isEmpty()) {
                         ans = false;
-                    } else if (!stack.pop().equals('b')) {
+                    } else if (list.get(list.size() - 1) == 2) {
+                        list.remove(list.size() - 1);
+                    } else {
                         ans = false;
                     }
                     break;
@@ -29,6 +31,6 @@ class Solution {
                     break;
             }
         }
-        return ans && stack.isEmpty();
+        return ans && list.isEmpty();
     }
 }
