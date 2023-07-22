@@ -1,3 +1,5 @@
+// 改自討論區方法，找不到原討論串
+
 class Solution {
     public boolean isValid(String s) {
         char[] cs = s.toCharArray();

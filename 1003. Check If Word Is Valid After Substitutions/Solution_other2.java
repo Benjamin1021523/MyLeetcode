@@ -1,3 +1,5 @@
+// 改自 https://leetcode.com/problems/check-if-word-is-valid-after-substitutions/solutions/3067699/java-c-100-solution-using-stack-check-if-word-is-valid-after-substitutions/
+
 class Solution {
     public boolean isValid(String s) {
         Stack<Character> stack = new Stack();
