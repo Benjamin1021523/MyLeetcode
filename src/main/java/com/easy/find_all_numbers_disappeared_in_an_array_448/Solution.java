@@ -1,4 +1,9 @@
-class Solution {
+package com.easy.find_all_numbers_disappeared_in_an_array_448;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Solution extends AbstractSolution {
     public List<Integer> findDisappearedNumbers(int[] nums) {
         boolean[] existNumber = new boolean[nums.length];
 

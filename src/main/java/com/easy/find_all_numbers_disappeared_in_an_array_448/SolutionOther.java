@@ -1,5 +1,12 @@
-// 改自 https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/solutions/1583741/time-o-n-space-o-1/
-class Solution {
+package com.easy.find_all_numbers_disappeared_in_an_array_448;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * 改自 https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/solutions/1583741/time-o-n-space-o-1/
+  */
+public class SolutionOther extends AbstractSolution {
     public List<Integer> findDisappearedNumbers(int[] nums) {
         List<Integer> list = new ArrayList<>();
         int assignIndex = -1;
@@ -9,13 +16,13 @@ class Solution {
             // 以儲存的數字標為負值，記錄索引值i+1的數字存在於陣列中
             nums[assignIndex] = Math.abs(nums[assignIndex]) * -1;
         }
-        
+
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] > 0) {
                 list.add(i + 1);
             };
         }
-        
+
         return list;
     }
 }

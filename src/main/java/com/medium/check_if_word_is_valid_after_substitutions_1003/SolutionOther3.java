@@ -1,6 +1,9 @@
-// 改自討論區方法，找不到原討論串
+package com.medium.check_if_word_is_valid_after_substitutions_1003;
 
-class Solution {
+/**
+ * 改自討論區方法，找不到原討論串
+ */
+public class SolutionOther3 extends AbstractSolution {
     public boolean isValid(String s) {
         char[] cs = s.toCharArray();
         int i = 0;

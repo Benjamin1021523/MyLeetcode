@@ -1,4 +1,8 @@
-class Solution {
+package com.medium.check_if_word_is_valid_after_substitutions_1003;
+
+import java.util.*;
+
+public class SolutionOther extends AbstractSolution {
     public boolean isValid(String s) {
         List<Integer> list = new ArrayList<>();
 

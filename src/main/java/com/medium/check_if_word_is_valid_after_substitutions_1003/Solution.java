@@ -1,4 +1,6 @@
-class Solution {
+package com.medium.check_if_word_is_valid_after_substitutions_1003;
+
+public class Solution extends AbstractSolution {
     public boolean isValid(String s) {
         int[] array = new int[s.length()];
 
@@ -7,10 +9,8 @@ class Solution {
         for (char c : s.toCharArray()) {
             if (!ans) break;
             switch (c) {
-                case 'a':
-                    array[++nowDepth] = 1;
-                    break;
-                case 'b':
+                case 'a' -> array[++nowDepth] = 1;
+                case 'b' -> {
                     if (nowDepth == -1) {
                         ans = false;
                     } else if (array[nowDepth] == 1) {
@@ -18,8 +18,8 @@ class Solution {
                     } else {
                         ans = false;
                     }
-                    break;
-                case 'c':
+                }
+                case 'c' -> {
                     if (nowDepth == -1) {
                         ans = false;
                     } else if (array[nowDepth] != 2) {
@@ -27,9 +27,7 @@ class Solution {
                     } else {
                         nowDepth--;
                     }
-                    break;
-                default:
-                    break;
+                }
             }
         }
         return ans && nowDepth == -1;

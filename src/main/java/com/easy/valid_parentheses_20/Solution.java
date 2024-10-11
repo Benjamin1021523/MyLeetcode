@@ -1,4 +1,9 @@
-class Solution {
+package com.easy.valid_parentheses_20;
+
+import java.util.*;
+
+class Solution extends AbstractSolution {
+
     public boolean isValid(String s) {
         Stack<Character> cStack = new Stack<>();
 
@@ -8,18 +13,8 @@ class Solution {
                 break;
             }
             switch (c) {
-                case '(':
-                case '[':
-                case '{':
-                    cStack.add(c);
-                    break;
-                case ')':
-                case ']':
-                case '}':
-                    ans &= checkClosingBracket(cStack, c);
-                    break;
-                default:
-                    break;
+                case '(', '[', '{' -> cStack.add(c);
+                case ')', ']', '}' -> ans &= checkClosingBracket(cStack, c);
             }
         }
         return ans && cStack.isEmpty();

@@ -1,6 +1,11 @@
-// 改自 https://leetcode.com/problems/check-if-word-is-valid-after-substitutions/solutions/3067699/java-c-100-solution-using-stack-check-if-word-is-valid-after-substitutions/
+package com.medium.check_if_word_is_valid_after_substitutions_1003;
 
-class Solution {
+import java.util.Stack;
+
+/**
+ * 改自 https://leetcode.com/problems/check-if-word-is-valid-after-substitutions/solutions/3067699/java-c-100-solution-using-stack-check-if-word-is-valid-after-substitutions/
+ */
+public class SolutionOther2 extends AbstractSolution {
     public boolean isValid(String s) {
         Stack<Character> stack = new Stack();
 
