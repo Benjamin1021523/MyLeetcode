@@ -1,19 +1,19 @@
 package com.easy.unique_email_addresses_929;
 
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 class Solution extends AbstractSolution {
     public int numUniqueEmails(String[] emails) {
-        domainEmailSetMap = new LinkedHashMap<>();
+        domainEmailSetMap = new HashMap<>();
+        uniqueEmailCount = 0;
+
         for (String originEmail : emails) {
             addEmail(originEmail);
         }
         return getCount();
     }
 
+    private int uniqueEmailCount;
     private Map<String, Set<String>> domainEmailSetMap;
 
     private void addEmail(String originEmail) {
@@ -43,17 +43,14 @@ class Solution extends AbstractSolution {
         }
 
         Set<String> localNameSet = domainEmailSetMap.getOrDefault(domainName, new HashSet<>());
-        localNameSet.add(localName);
+        boolean isNewEmail = localNameSet.add(localName);
+        if (isNewEmail) {
+            ++uniqueEmailCount;
+        }
         domainEmailSetMap.put(domainName, localNameSet);
     }
 
     private int getCount() {
-        int count = 0;
-
-        for (Set<String> localNameSet : domainEmailSetMap.values()) {
-            count += localNameSet.size();
-        }
-
-        return count;
+        return uniqueEmailCount;
     }
 }
