@@ -17,19 +17,30 @@ class Solution extends AbstractSolution {
     private Map<String, Set<String>> domainEmailSetMap;
 
     private void addEmail(String originEmail) {
-        String[] splitStr = originEmail.split("@");
+        String localName = "", domainName = "";
 
-        int firstPlusIndex = splitStr[0].indexOf("+");
+        StringBuilder builder = new StringBuilder();
+        boolean nowIsLocal = true;
+        for (int index = 0; index < originEmail.length(); index++) {
+            char c = originEmail.charAt(index);
+            if (nowIsLocal) {
+                switch (c) {
+                    case '.' -> {
+                        continue;
+                    }
+                    case '+', '@' -> {
+                        localName = builder.toString();
+                        nowIsLocal = false;
+                    }
+                    default -> builder.append(c);
+                }
+            }
 
-        String localName;
-        if (firstPlusIndex == -1) {
-            localName = splitStr[0];
-        } else {
-            localName = splitStr[0].substring(0, firstPlusIndex);
+            if (c == '@') {
+                domainName = originEmail.substring(index + 1);
+                break;
+            }
         }
-        localName = localName.replace(".", "");
-
-        String domainName = splitStr[1];
 
         Set<String> localNameSet = domainEmailSetMap.getOrDefault(domainName, new HashSet<>());
         localNameSet.add(localName);
