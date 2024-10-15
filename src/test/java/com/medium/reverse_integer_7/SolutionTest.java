@@ -9,14 +9,23 @@ import java.util.Map;
 class SolutionTest extends AbstractSolutionTest<Integer, Integer> {
 
     SolutionTest() {
-        checkPoints = Map.ofEntries(Map.entry(123, 321), Map.entry(-120, -21), Map.entry(0, 0), Map.entry(-1, -1), Map.entry(1534236469, 0));
+        checkPoints = Map.ofEntries(
+                Map.entry(123, 321), Map.entry(-120, -21), Map.entry(0, 0), Map.entry(-1, -1), Map.entry(1534236469, 0),
+                Map.entry(-2147483648, 0)
+        );
     }
 
     final AbstractSolution solution = new Solution();
+    final AbstractSolution solution2 = new Solution2();
 
     @Test
     void testSolution() {
         reverse(solution);
+    }
+
+    @Test
+    void testSolution2() {
+        reverse(solution2);
     }
 
     void reverse(AbstractSolution solution) {
