@@ -47,9 +47,6 @@ class SolutionTest extends AbstractSolutionTest<AbstractSolution.TreeNode, Integ
                 Map.entry(treeNode2, 3)
         );
     }
-
-    final AbstractSolution solution = new Solution();
-
     @Test
     void testSolution() {
         for (Map.Entry<AbstractSolution.TreeNode, Integer> entry : checkPoints.entrySet()) {
@@ -57,7 +54,7 @@ class SolutionTest extends AbstractSolutionTest<AbstractSolution.TreeNode, Integ
             Integer k = entry.getValue();
 
             System.out.println(treeNode.name);
-            System.out.println(solution.kthLargestPerfectSubtree(treeNode, k));
+            System.out.println(new Solution().kthLargestPerfectSubtree(treeNode, k));
         }
     }
 }
